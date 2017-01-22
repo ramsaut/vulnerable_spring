@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Sign up form</title>
+        <title>Admin</title>
     </head>
     <body>
 
-        <h1>Sign up to the event using this form</h1>
-
-        <form action="#" th:action="@{/form}" method="POST">
+        <h1>These people signed up:</h1>
+        <p>Name Address VIP?</p>
+        <div th:each="str,iterStat : ${people}">
+            <span th:utext="${str.name}"/> <span th:utext="${str.address}"/> <span th:text="${str.vip}"/><a th:href="@{delete(id=${str.getId()})}">Delete</a>
+         </div>
+        
+        <p>Add new VIPs</p>
+        <form action="#" th:action="@{/formvip}" method="POST">
             <p><label for="name">Name</label>: <input type="text" name="name" id="name"/></p>
             <p><label for="address">Address</label>: <input type="text" name="address" id="address"/></p>
             <p><input type="submit" value="Submit" /></p>
         </form>
+                <a th:href="@{logout}">Logout</a>
 
-        <p></p>
     </body>
 </html>
